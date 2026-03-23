@@ -2,16 +2,48 @@
 
 
 :root{
-    --h-title-color:#3948d2;
+    --h-title-color: #6a6ff2;
+    --h-text-color: #24244a;
+    --h-soft-bg: rgba(255, 255, 255, 0.42);
+    --h-soft-border: rgba(255, 255, 255, 0.58);
+    --h-nav-bg: rgba(255, 255, 255, 0.32);
+    --h-shadow: 0 10px 30px rgba(73, 84, 190, 0.22);
+}
+
+body {
+    color: var(--h-text-color);
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 168, 218, 0.35), transparent 33%),
+        radial-gradient(circle at 82% 28%, rgba(170, 191, 255, 0.4), transparent 32%),
+        radial-gradient(circle at 78% 82%, rgba(203, 182, 255, 0.35), transparent 34%),
+        linear-gradient(135deg, #f6f7ff 0%, #e9efff 45%, #fdf1fb 100%);
+    min-height: 100vh;
 }
 
 .header {
-    border-bottom: solid 2px var(--bs-blue);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+    background: var(--h-nav-bg);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    box-shadow: 0 8px 22px rgba(106, 111, 242, 0.18);
     z-index: 10000;
 }
 
+.header .navbar-brand,
+.header .nav-link {
+    color: #3a3d8f !important;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.header .nav-link:hover,
+.header .nav-link:focus,
+.header .nav-link.active {
+    color: #8f4de4 !important;
+}
+
 .bg-bottom {
-    background-color: var(--h-title-color);
+    background: linear-gradient(120deg, rgba(106, 111, 242, 0.88), rgba(150, 109, 255, 0.88));
 }
 
 .top-section {
@@ -20,10 +52,12 @@
     background-position: center;
     background-size: cover;
     height: 25rem;
+    overflow: hidden;
 }
 
 .top-section h2 {
     font-weight: 400;
+    text-shadow: 0 5px 20px rgba(43, 39, 118, 0.35);
 }
 
 .top-section .top-section-content {
@@ -38,29 +72,90 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: linear-gradient(130deg, rgba(60, 68, 148, 0.42), rgba(178, 97, 208, 0.38));
+}
+
+.top-section:after {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    top: -120px;
+    right: 8%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0));
+    z-index: 0;
 }
 
 section header h2{
     font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
     color: var(--h-title-color);
-    font-size: 2.3rem;
-    line-height: 4rem;
+    font-size: 2.1rem;
+    line-height: 3.6rem;
 }
 
 section .main-body{
-    font-size: 1.3rem;
-    font-weight: 200;
-    line-height: 2.4rem;
+    font-size: 1.12rem;
+    font-weight: 400;
+    line-height: 2.05rem;
+    color: #30325a;
 }
 
 
+section {
+    margin: 1.25rem auto;
+}
+
+section .container {
+    background: var(--h-soft-bg);
+    border: 1px solid var(--h-soft-border);
+    border-radius: 22px;
+    box-shadow: var(--h-shadow);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+}
+
+.main-body h2,
+.main-body h3,
+.main-body h4 {
+    color: #5159c4;
+    margin-top: 1.35rem;
+}
+
+.main-body a {
+    color: #6f53e6;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.main-body a:hover {
+    color: #934df3;
+    text-decoration: underline;
+}
+
+.main-body hr {
+    border-color: rgba(130, 137, 240, 0.32);
+}
+
+.main-body code {
+    color: #5d3fc6;
+    background: rgba(143, 160, 255, 0.16);
+    border-radius: 6px;
+    padding: 0.15rem 0.35rem;
+}
+
 .bg-gradient-primary-to-secondary-light {
-    background: linear-gradient(45deg, #fcfcfc, #ffffff) !important;
+    background: transparent !important;
 }
 
 .bg-gradient-primary-to-secondary-gray {
-    background: linear-gradient(45deg, #f0f0f0, #f1f1f1) !important;
+    background: transparent !important;
+}
+
+.bg-gradient-primary-to-secondary-dark {
+    background: transparent !important;
 }
 
 
@@ -100,12 +195,24 @@ section .main-body{
 
 #avatar img {
     height: max(130px,min(200px,calc(100vw/6)));
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 10px 26px rgba(84, 92, 200, 0.34);
 }
 
 @media screen and (max-width: 991px) {
     #avatar {
         margin: 0;
+    }
+
+    section header h2 {
+        font-size: 1.8rem;
+        line-height: 3rem;
+    }
+
+    section .main-body {
+        font-size: 1.03rem;
+        line-height: 1.9rem;
     }
 }
 

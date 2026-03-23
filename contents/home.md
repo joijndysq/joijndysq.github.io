@@ -1,20 +1,21 @@
-[![XX](https://img.shields.io/badge/XX-github-blue?logo=github)](https://github.com/XX)
+## 👋 关于我
 
-I'm currently pursuing a Master's degree in XX at the Department of XX, XX University, XX.
+你好，我是 **Lyric**，一名热爱二次元文化与前端开发的创作者。  
+我喜欢把「角色感」「故事感」和「交互体验」融合进个人主页，让页面像一张会呼吸的角色名片。
 
-#### Email  
-<code>XX@XX.XX</code>  
-<code>XX@XX.XX</code>
+## ✨ 关键词
 
-#### Education  
-**XX University**, Master of XX (XX – XX)  
-• GPA: XX/XX  
+- 二次元视觉设计（ACG Style）
+- 前端开发（HTML / CSS / JavaScript）
+- 个人品牌网站与内容展示
 
-**XX University**, Exchange student <br>  
-• As a XX, represented my college as an outstanding student for a XX exchange program.  
+## 📮 联系方式
 
-**XX University**, Honours Bachelor of XX (XX – XX)  
-• GPA: XX/XX (top XX%)  
+- Email: `lyric@example.com`
+- GitHub: [https://github.com/lyric](https://github.com/lyric)
 
-#### Research Interests  
-XX, XX, XX, XX.
+## 🌸 正在做的事
+
+- 打磨个人主页 UI 与交互动效
+- 输出技术与创作结合的内容
+- 持续分享开发中的灵感与心得
