@@ -1,26 +1,6 @@
 const content_dir = 'contents/'
 const config_file = 'config.yml'
 
-// ===== 主题切换功能 =====
-function initTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (prefersDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-}
-
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-}
-
 // Fetch text file
 async function fetch_text(filename) {
     const file = await fetch(filename)
@@ -31,13 +11,8 @@ async function fetch_text(filename) {
 // Load config file
 async function load_config() {
     let config = jsyaml.load(await fetch_text(content_dir + config_file))
-    document.getElementById('page-top-title').innerHTML = config['title']
     document.getElementById('title').innerHTML = config['title'] + ' - 博客'
-    document.getElementById('top-section-bg-text').innerHTML = config['top_title']
-    document.getElementById('copyright-text').innerHTML = config['copyright']
-    document.getElementById('github-link').href = config['github_link']
-    document.getElementById('license-link').href = config['license_link']
-    document.getElementById('license-link').innerHTML = config['license_name']
+    document.getElementById('copyright-text').innerHTML = config['copyright-text']
     return config
 }
 
@@ -53,6 +28,9 @@ async function load_markdown(filename, container_id) {
     const html_content = marked.parse(md_text)
     document.getElementById(container_id).innerHTML = html_content
 
+    // 为代码块添加复制按钮
+    addCopyButtonsToCodeBlocks();
+    
     // Render MathJax
     if (window.MathJax && window.MathJax.typesetPromise) {
         await window.MathJax.typesetPromise()
@@ -95,13 +73,7 @@ function init_navbar_scroll() {
 window.addEventListener('DOMContentLoaded', async (event) => {
     // 初始化主题
     initTheme();
-    
-    // 主题切换按钮事件
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-    }
-    
+
     await load_config()
 
     const article_name = get_url_param('name') || 'blog-realsense'

@@ -1,37 +1,10 @@
 const content_dir = 'contents/'
 const config_file = 'config.yml'
-const section_names = ['home', 'articles', 'achievements', 'share', 'links'];
-
-// ===== 主题切换功能 =====
-function initTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (prefersDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-}
-
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-}
-
+const section_names = ['home', 'articles', 'experience', 'publications', 'achievements', 'awards', 'share', 'links'];
 
 window.addEventListener('DOMContentLoaded', event => {
     // 初始化主题
     initTheme();
-    
-    // 主题切换按钮事件
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-    }
 
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
@@ -159,8 +132,13 @@ window.addEventListener('DOMContentLoaded', event => {
                 const html = marked.parse(markdown);
                 document.getElementById(name + '-md').innerHTML = html;
             }).then(() => {
+                // 为代码块添加复制按钮
+                addCopyButtonsToCodeBlocks();
                 // MathJax
                 MathJax.typeset();
+                // 时间轴 / 卡片网格
+                if (name === 'experience') createTimeline(name + '-md');
+                if (name === 'articles') createCardGrid(name + '-md');
             })
             .catch(error => console.log(error));
     })

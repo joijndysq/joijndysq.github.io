@@ -31,9 +31,6 @@
     <!-- Bootstrap core JS-->
     <script type="text/javascript" src="static/js/bootstrap.bundle.min.js"></script>
 
-    <!-- For Compatability -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-
     <!-- Markdown -->
     <script type="text/javascript" src="static/js/marked.min.js"></script>
 
@@ -70,12 +67,11 @@
     </script>
     <script type="text/javascript" id="MathJax-script"
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-    <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- Core JS-->
-    <script type="text/javascript" src="static/js/scripts.js"></script>
     <script type="text/javascript" src="static/js/js-yaml.min.js"></script>
+    <script type="text/javascript" src="static/js/common.js"></script>
+    <script type="text/javascript" src="static/js/scripts.js"></script>
 
 </head>
 
@@ -96,10 +92,19 @@
                         <a class="nav-link me-lg-3" href="#home">主页</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-lg-3" href="#articles">文章</a>
+                        <a class="nav-link me-lg-3" href="articles.html">文章</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="experience.html">经历</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="publications.html">论文</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link me-lg-3" href="#achievements">成就</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-lg-3" href="#awards">奖项</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link me-lg-3" href="#share">分享</a>
@@ -158,6 +163,28 @@
     </section>
     <!-- Articles -->
 
+    <!-- Experience -->
+    <section class="bg-gradient-primary-to-secondary-dark mt5 md5" id="experience">
+        <div class="container px-5">
+            <header>
+                <h2 id="experience-subtitle"><i class="bi bi-briefcase"></i> 经历 </h2>
+            </header>
+            <div class="main-body" id="experience-md"></div>
+        </div>
+    </section>
+    <!-- Experience -->
+
+    <!-- Publications -->
+    <section class="bg-gradient-primary-to-secondary-gray mt5 md5" id="publications">
+        <div class="container px-5">
+            <header>
+                <h2 id="publications-subtitle"><i class="bi bi-book"></i> 论文 </h2>
+            </header>
+            <div class="main-body" id="publications-md"></div>
+        </div>
+    </section>
+    <!-- Publications -->
+
     <!-- Achievements -->
     <section class="bg-gradient-primary-to-secondary-dark mt5 md5" id="achievements">
         <div class="container px-5">
@@ -180,6 +207,17 @@
         </div>
     </section>
     <!-- Share  -->
+
+    <!-- Awards -->
+    <section class="bg-gradient-primary-to-secondary-dark mt5 md5" id="awards">
+        <div class="container px-5">
+            <header>
+                <h2 id="awards-subtitle"><i class="bi bi-trophy"></i> 奖项</h2>
+            </header>
+            <div class="main-body" id="awards-md"></div>
+        </div>
+    </section>
+    <!-- Awards  -->
 
     <!-- Links -->
     <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="links">
