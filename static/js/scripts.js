@@ -2,8 +2,36 @@ const content_dir = 'contents/'
 const config_file = 'config.yml'
 const section_names = ['home', 'articles', 'achievements', 'share', 'links'];
 
+// ===== 主题切换功能 =====
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (prefersDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
 
 window.addEventListener('DOMContentLoaded', event => {
+    // 初始化主题
+    initTheme();
+    
+    // 主题切换按钮事件
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
 
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
@@ -26,6 +54,83 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
+
+    // ===== 导航栏滚动效果 =====
+    const header = document.querySelector('.header');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // 添加/移除滚动样式
+        if (currentScroll > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+    });
+
+    // ===== 滚动显示动画 =====
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // 观察所有 section
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
+
+    // ===== 鼠标跟随光效 =====
+    document.addEventListener('mousemove', (e) => {
+        const cursor = document.querySelector('.cursor-glow');
+        if (!cursor) {
+            const newCursor = document.createElement('div');
+            newCursor.className = 'cursor-glow';
+            newCursor.style.cssText = `
+                position: fixed;
+                width: 300px;
+                height: 300px;
+                background: radial-gradient(circle, rgba(255, 126, 179, 0.15) 0%, transparent 70%);
+                pointer-events: none;
+                z-index: 9999;
+                transform: translate(-50%, -50%);
+                transition: opacity 0.3s ease;
+            `;
+            document.body.appendChild(newCursor);
+        }
+        
+        const cursorElement = document.querySelector('.cursor-glow');
+        cursorElement.style.left = e.clientX + 'px';
+        cursorElement.style.top = e.clientY + 'px';
+    });
+
+    // ===== 打字机效果 for 顶部标题 =====
+    const typeWriter = (element, text, speed = 100) => {
+        let i = 0;
+        element.textContent = '';
+        
+        function type() {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        }
+        
+        type();
+    };
 
 
     // Yaml
