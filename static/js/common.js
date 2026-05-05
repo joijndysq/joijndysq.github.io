@@ -214,7 +214,7 @@ function createCardGrid(containerId) {
     if (currentCategory) groups.push(currentCategory);
 
     // 没有 h4 卡片则不处理
-    if (groups.every(g => g.cards.length === 0)) return;
+    if (!groups.some(g => !g.standalone && g.cards && g.cards.length > 0)) return;
 
     container.innerHTML = '';
 
@@ -236,16 +236,38 @@ function createCardGrid(containerId) {
 
                 // 提取图片
                 const imgEl = card.content.find(el => el.tagName === 'P' && el.querySelector('img'));
+                // 只保留关键词行，排除"涉及内容"、列表、长描述
                 const textEls = card.content.filter(el => el !== imgEl);
+                const briefEls = textEls.filter(el => {
+                    if (el.tagName !== 'P') return false;
+                    const strong = el.querySelector('strong');
+                    if (strong && /涉及内容|内容简介/.test(strong.textContent)) return false;
+                    if (el.textContent.length < 30) return true;
+                    if (strong) return true;
+                    return false;
+                });
 
-                cardEl.appendChild(card.title);
+                // 图片放左边
                 if (imgEl) {
                     const imgWrap = document.createElement('div');
                     imgWrap.className = 'card-image';
                     imgWrap.appendChild(imgEl.querySelector('img').cloneNode(true));
                     cardEl.appendChild(imgWrap);
                 }
-                textEls.forEach(el => cardEl.appendChild(el));
+
+                // 精简文字放右边
+                const bodyEl = document.createElement('div');
+                bodyEl.className = 'card-body';
+                bodyEl.appendChild(card.title);
+                if (briefEls.length > 0) {
+                    briefEls.forEach(el => bodyEl.appendChild(el));
+                } else {
+                    // fallback: 只保留第一个非空短段落
+                    const firstP = textEls.find(el => el.tagName === 'P' && el.textContent.trim());
+                    if (firstP) bodyEl.appendChild(firstP);
+                }
+                cardEl.appendChild(bodyEl);
+
                 grid.appendChild(cardEl);
             });
 
@@ -266,7 +288,8 @@ function initTheme() {
     }
 
     const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
+    if (themeToggle && !themeToggle._bound) {
+        themeToggle._bound = true;
         themeToggle.addEventListener('click', toggleTheme);
     }
 }
@@ -333,6 +356,9 @@ function addCopyButtonsToCodeBlocks() {
 
 // ===== 自动初始化 =====
 window.addEventListener('DOMContentLoaded', () => {
+    // 主题切换（确保所有页面都绑定）
+    initTheme();
+
     initParticles();
     initScrollIndicator();
     initProgressBar();
