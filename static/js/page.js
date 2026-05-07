@@ -8,7 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 加载配置
     loadConfig();
+
+    // 导航栏滚动
+    initNavbarScroll();
 });
+
+// ===== 导航栏滚动效果 =====
+function initNavbarScroll() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+}
 
 // ===== 内容加载 =====
 function loadContent() {

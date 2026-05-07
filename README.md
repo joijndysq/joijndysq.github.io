@@ -1,64 +1,36 @@
-![Github Forks](https://img.shields.io/github/forks/Yixin0313/personal-homepage-template?style=flat)
-![Github Stars](https://img.shields.io/github/stars/Yixin0313/personal-homepage-template?style=flat)
-![License](https://img.shields.io/github/license/Yixin0313/personal-homepage-template)
+# Lyric's Homepage
 
-# 通用个人主页模板：适用于学术和求职场景 | A general-purpose template: suitable for both academic and professional use.
+二次元开发者的个人主页，基于 GitHub Pages 构建，支持深色/浅色主题切换。
 
-## 预览 | Preview
-[![Screenshot of the Website](https://raw.githubusercontent.com/Yixin0313/personal-homepage-template/main/screenshot_full.png)](https://yixin0313.github.io/personal-homepage-template/)
+## 运行
 
-## 介绍 | Introduction
-
-Lyric 的个人主页，基于 GitHub Pages 构建，支持深色/浅色主题切换。
-
-Bilibili教程视频：【【2025最新保姆级教程】手把手教你用github制作个人主页（申学找工作必备）】https://www.bilibili.com/video/BV16nNMeFEzm?vd_source=79b688b1a191b9f9e8204aa1c3d0adab
-
-CSDN教程：https://blog.csdn.net/qq_45743991/article/details/145505150?spm=1001.2014.3001.5502
-
-## 快速开始 | Getting Start
-### 1. Fork 该仓库 | Fork this repository
-仓库名称应命名为 `<用户名>.github.io`，这样你的个人网站地址将是 `https://<用户名>.github.io/`。
-
-The repository name should be `<username>.github.io`, which will also be your website's URL.
-
-
-### 2.  编辑页面内容 | Edit page content
-(1) 进入你想存放项目的文件夹，并克隆新的仓库 | Go to the folder where you want to store your project, and clone the new repository:
-```
-git clone https://github.com/<username>/<username>.github.io.git
-```
-项目的目录结构如下 | The directory structure is as follows:
-
-```.
-.
-├── contents
-└── static
-    ├── assets
-    │   └── img
-    ├── css
-    └── js
+```bash
+# 使用任意静态服务器，例如 Live Server 或
+python3 -m http.server 8080
 ```
 
-(2) 修改各个板块的内容 | Modify the content of each section, which corresponds to `contents/*.md`.
+## 项目结构
 
-(3) 调整网站设置 | Adjust the title, copyright information, and other text of the website in `contents/config.yml`
-
-(4) 替换图片 | Replace background image and photo with new ones for your web pages in `static/assets/img/`
-
-(5) 提交更改 | Push it: 
 ```
-git commit -am 'init'
-git push
+├── index.html          # 首页（多区块单页）
+├── article.html        # 博客文章页（?name=xxx）
+├── articles.html       # 文章列表页
+├── experience.html     # 经历页
+├── publications.html   # 论文页
+├── 404.html            # 自定义 404
+├── contents/           # Markdown 内容 + YAML 配置
+│   ├── config.yml      # 网站配置
+│   ├── *.md            # 各板块内容
+│   └── blog/           # 博客文章
+└── static/
+    ├── assets/img/     # 图片资源
+    ├── css/main.css    # 自定义样式
+    └── js/
+        ├── common.js   # 公共（主题/代码复制/粒子/进度条）
+        ├── scripts.js  # 首页逻辑
+        ├── article.js  # 文章页逻辑
+        └── page.js     # 子页通用逻辑
 ```
-
-
-### 3. 访问你的网站 | Enjoy
-
-打开浏览器，访问 https://<用户名>.github.io，即可查看你的个人主页
-
-Fire up a browser and go to `https://<username>.github.io`
-
-
 
 ## 添加博客
 
@@ -97,9 +69,6 @@ const titles = {
 
 博客配图放入 `static/assets/img/blog/`，在文章中引用：`![描述](static/assets/img/blog/xxx.png)`。
 
----
-
 ## License
-本项目基于 MIT 许可协议，你可以自由使用和修改此模板。 Yixin Huang 2025年2月7号
 
-Copyright Yixin Huang, 2025. Licensed under an MIT license. You can copy and mess with this template.
+MIT

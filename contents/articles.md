@@ -59,4 +59,4 @@
 
 ---
 
-> 📚 更多内容正在整理中... 欢迎关注我的 [GitHub](https://github.com/joijndysq) 获取最新更新！
+> 📚 持续更新中，欢迎关注我的 [GitHub](https://github.com/joijndysq)
