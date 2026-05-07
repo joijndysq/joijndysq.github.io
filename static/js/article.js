@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     const article_name = get_url_param('name') || 'blog-realsense'
 
     if (article_name) {
-        await load_markdown(content_dir + article_name + '.md', 'article-md')
+        await load_markdown(content_dir + 'blog/' + article_name + '.md', 'article-md')
         
         const titles = {
             'blog-realsense': '香橙派AIpro 安装 Intel Realsense D456 深度相机完整指南'

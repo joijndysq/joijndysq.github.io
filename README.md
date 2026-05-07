@@ -9,13 +9,7 @@
 
 ## 介绍 | Introduction
 
-这是一个**通用的个人主页模板**，基于 [Sen Li 的学术主页模板](https://github.com/senli1073/senli1073.github.io) 进行修改。  
-
-我新增了**工作经历板块**，使其更加适用于程序员和求职者。并且使用了中英文对照版本。
-
-This is a **general-purpose personal website template**, modified from [Sen Li's academic template](https://github.com/senli1073/senli1073.github.io).  
-
-I have added a **work experience section**, making it more practical for programmers and job seekers.
+Lyric 的个人主页，基于 GitHub Pages 构建，支持深色/浅色主题切换。
 
 Bilibili教程视频：【【2025最新保姆级教程】手把手教你用github制作个人主页（申学找工作必备）】https://www.bilibili.com/video/BV16nNMeFEzm?vd_source=79b688b1a191b9f9e8204aa1c3d0adab
 
@@ -65,6 +59,45 @@ git push
 Fire up a browser and go to `https://<username>.github.io`
 
 
+
+## 添加博客
+
+### 1. 创建 Markdown 文件
+
+在 `contents/blog/` 下新建 `.md` 文件，例如 `contents/blog/my-new-post.md`。
+
+支持标准 Markdown 语法 + MathJax 数学公式（`$...$` 行内 / `$$...$$` 块级）。
+
+### 2. 注册到文章列表
+
+编辑 `contents/articles.md`，添加条目：
+
+```markdown
+#### [文章标题](article.html?name=my-new-post)
+
+![封面图](static/assets/img/blog/my-cover.png)
+
+**关键词**: tag1, tag2, tag3
+
+**内容简介**: 简短描述...
+```
+
+### 3. 添加标题映射
+
+编辑 `static/js/article.js`，在 `titles` 对象中添加：
+
+```js
+const titles = {
+    'blog-realsense': '香橙派AIpro 安装 Intel Realsense D456 深度相机完整指南',
+    'my-new-post': '你的文章标题'
+}
+```
+
+### 4. 图片存放
+
+博客配图放入 `static/assets/img/blog/`，在文章中引用：`![描述](static/assets/img/blog/xxx.png)`。
+
+---
 
 ## License
 本项目基于 MIT 许可协议，你可以自由使用和修改此模板。 Yixin Huang 2025年2月7号
