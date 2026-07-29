@@ -1,6 +1,6 @@
 const content_dir = 'contents/'
 const config_file = 'config.yml'
-const section_names = ['home', 'articles', 'experience', 'publications', 'achievements', 'awards', 'share', 'links'];
+const section_names = ['home', 'articles', 'experience', 'publications', 'projects', 'achievements', 'awards', 'share', 'links'];
 
 window.addEventListener('DOMContentLoaded', event => {
     // 初始化主题

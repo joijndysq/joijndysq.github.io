@@ -1,0 +1,42 @@
+<article class="html-blog">
+  <p class="article-meta">发布指南 · HTML Blog · Video</p>
+  <h1>在个人主页发布 HTML 博客与视频</h1>
+  <p>博客阅读器现在同时支持 Markdown 和 HTML。HTML 文件适合需要复杂布局、原生视频或第三方播放器的文章。</p>
+
+  <h2>方案 A：本地 MP4</h2>
+  <p>将压缩后的视频放入 <code>static/assets/video/</code>，再使用下面的结构：</p>
+  <pre><code class="language-html">&lt;figure class="video-block"&gt;
+  &lt;video class="local-video" controls preload="metadata"
+         poster="static/assets/img/blog/demo-cover.jpg"&gt;
+    &lt;source src="static/assets/video/demo.mp4" type="video/mp4"&gt;
+    你的浏览器不支持视频播放。
+  &lt;/video&gt;
+  &lt;figcaption&gt;机械臂规划与执行演示&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+  <h2>方案 B：哔哩哔哩</h2>
+  <p>将 <code>BV_ID</code> 替换为真实 BV 号：</p>
+  <pre><code class="language-html">&lt;figure class="video-block"&gt;
+  &lt;div class="video-embed"&gt;
+    &lt;iframe
+      src="https://player.bilibili.com/player.html?bvid=BV_ID&amp;page=1"
+      title="项目演示视频"
+      loading="lazy"
+      scrolling="no"
+      frameborder="0"
+      allowfullscreen&gt;
+    &lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;figcaption&gt;项目完整演示&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+  <h2>发布 HTML 博客</h2>
+  <ol>
+    <li>在 <code>contents/blog/</code> 创建 HTML 片段文件。</li>
+    <li>使用 <code>article.html?name=文件名&amp;format=html</code> 打开文章。</li>
+    <li>在 <code>contents/articles.md</code> 注册文章链接。</li>
+    <li>在 <code>static/js/article.js</code> 的标题映射中登记标题（可选）。</li>
+  </ol>
+
+  <blockquote>HTML 博客内容来自网站自己的仓库。不要直接粘贴来源不明的脚本、iframe 或第三方统计代码。</blockquote>
+</article>
