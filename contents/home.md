@@ -20,5 +20,6 @@
 
 - 邮箱：[leexii798@gmail.com](mailto:leexii798@gmail.com)
 - GitHub：[joijndysq](https://github.com/joijndysq)
+- ORCID：[0009-0000-6549-8688](https://orcid.org/0009-0000-6549-8688)
 
 欢迎交流机器人、视觉算法和工程实践。
