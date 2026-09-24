@@ -26,4 +26,4 @@
 
 ### 联系方式
 
-[GitHub](https://github.com/joijndysq) · [邮箱](mailto:leexii798@gmail.com)
+[GitHub](https://github.com/joijndysq) · [ORCID: 0009-0000-6549-8688](https://orcid.org/0009-0000-6549-8688) · [邮箱](mailto:leexii798@gmail.com)
