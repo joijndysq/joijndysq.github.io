@@ -268,12 +268,68 @@ function createCardGrid(containerId) {
                 }
                 cardEl.appendChild(bodyEl);
 
+                const tagLine = card.content.find(el => el.tagName === 'P' && /^标签[：:]/.test(el.textContent.trim()));
+                const tags = tagLine ? Array.from(tagLine.textContent.matchAll(/#([^\s#]+)/g), match => match[1]) : [];
+                cardEl.dataset.tags = tags.join(' ');
+                cardEl.dataset.search = (cardEl.textContent + ' ' + tags.join(' ')).toLocaleLowerCase();
+                if (tagLine) tagLine.remove();
+
                 grid.appendChild(cardEl);
             });
 
             container.appendChild(grid);
         }
     });
+
+    if (containerId === 'articles-md' || (containerId === 'page-md' && location.pathname.endsWith('articles.html'))) {
+        initBlogFilters(container);
+    }
+}
+
+function initBlogFilters(container) {
+    const cards = Array.from(container.querySelectorAll('.article-card'));
+    if (!cards.length) return;
+    const tags = [...new Set(cards.flatMap(card => card.dataset.tags.split(' ').filter(Boolean)))];
+    const controls = document.createElement('div');
+    controls.className = 'blog-controls';
+    const search = document.createElement('input');
+    search.type = 'search';
+    search.placeholder = '搜索标题、内容或 #标签';
+    search.setAttribute('aria-label', '搜索 Blog 文章');
+    controls.appendChild(search);
+    const tagBar = document.createElement('div');
+    tagBar.className = 'blog-tags';
+    controls.appendChild(tagBar);
+    const status = document.createElement('p');
+    status.className = 'blog-status';
+    status.setAttribute('aria-live', 'polite');
+    controls.appendChild(status);
+    container.prepend(controls);
+    let activeTag = '';
+    for (const tag of ['', ...tags]) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = tag ? '#' + tag : '全部';
+        button.setAttribute('aria-pressed', String(!tag));
+        button.addEventListener('click', () => {
+            activeTag = tag;
+            tagBar.querySelectorAll('button').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+            update();
+        });
+        tagBar.appendChild(button);
+    }
+    function update() {
+        const query = search.value.trim().toLocaleLowerCase().replace(/^#/, '');
+        let count = 0;
+        cards.forEach(card => {
+            const visible = (!activeTag || card.dataset.tags.split(' ').includes(activeTag)) && card.dataset.search.includes(query);
+            card.hidden = !visible;
+            if (visible) count++;
+        });
+        status.textContent = count ? `显示 ${count} 篇文章` : '没有找到匹配的文章';
+    }
+    search.addEventListener('input', update);
+    update();
 }
 
 // ===== 主题切换功能 =====
