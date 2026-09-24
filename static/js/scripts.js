@@ -1,6 +1,6 @@
 const content_dir = 'contents/'
 const config_file = 'config.yml'
-const section_names = ['home', 'articles', 'experience', 'publications', 'projects', 'achievements', 'awards', 'share', 'links'];
+const section_names = ['home', 'articles'];
 
 window.addEventListener('DOMContentLoaded', event => {
     // 初始化主题
@@ -135,7 +135,7 @@ window.addEventListener('DOMContentLoaded', event => {
                 // 为代码块添加复制按钮
                 addCopyButtonsToCodeBlocks();
                 // MathJax
-                MathJax.typeset();
+                if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise();
                 // 时间轴 / 卡片网格
                 if (name === 'experience') createTimeline(name + '-md');
                 if (name === 'articles') createCardGrid(name + '-md');

@@ -1386,6 +1386,13 @@ section i:hover {
 }
 
 /* ===== 文章卡片网格 ===== */
+.blog-controls { margin: 1.5rem 0; }
+.blog-controls input { width: 100%; max-width: 32rem; padding: .7rem 1rem; border: 1px solid var(--h-soft-border); border-radius: 12px; background: var(--h-soft-bg); color: inherit; }
+.blog-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+.blog-tags button { padding: .35rem .8rem; border: 1px solid var(--h-soft-border); border-radius: 999px; background: var(--h-soft-bg); color: inherit; cursor: pointer; }
+.blog-tags button[aria-pressed="true"] { background: #5264b8; color: white; }
+.blog-status { margin-top: .7rem; }
+.article-card[hidden] { display: none; }
 .card-grid {
     display: flex;
     flex-direction: column;
@@ -1647,4 +1654,3 @@ html[data-theme="dark"] .header .navbar-toggler {
         border-radius: 12px;
     }
 }
-

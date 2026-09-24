@@ -2,6 +2,18 @@
 
 这里整理了我在机器人、多模态视觉、嵌入式通信与控制方向的代表性公开项目。项目按与个人技术方向的相关性排列，课程练习、资料镜像和私有研究仓库未列入。
 
+### 🤖 [AgiBot D1 工作区](https://github.com/joijndysq/agibot_d1_ws)
+
+智元 D1 机器人相关的 ROS 2 工作区与控制开发；代码和文档仍在迭代。
+
+---
+
+### ✋ [灵巧手工作区](https://github.com/joijndysq/hand_ws)
+
+灵巧手模型与运动规划相关的 ROS 2 实践；项目详情以仓库当前内容为准。
+
+---
+
 ### 🔥 [Multimodal Detect](https://github.com/joijndysq/multimodal_detect)
 
 面向火焰检测与机器人感知的多模态系统项目，围绕可见光、红外与深度信息融合开展检测、跟踪和空间定位实践。
